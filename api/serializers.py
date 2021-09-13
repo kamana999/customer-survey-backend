@@ -22,3 +22,4 @@ class AnswerSerializers(serializers.ModelSerializer):
     class Meta:
         model = Answers
         fields = ['id','question','answer','session']
+        
