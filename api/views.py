@@ -35,8 +35,15 @@ class AnswerViewSet(viewsets.ModelViewSet):
             list1 = json.dumps(list)
             for data in list:
                 print(data['question'], data['answer'])
-                answer = Answers.objects.create(question=Question(data['question']), answer=data['answer'], session=session)
-                answer.save()
+
+                answer = Answers.objects.filter(question_id = data['question'], session_id=session.id)
+                if len(answer) > 0:
+                    answer[0].answer = data['answer'],
+                    answer[0].save()
+                else:
+                    answer = Answers.objects.create(question=Question(data['question']), answer=data['answer'], session=session)
+                    answer.save()
+                
             return Response(status=status.HTTP_200_OK)
         else:
             response = {'message': 'We need to provide'}
