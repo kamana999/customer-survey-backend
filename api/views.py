@@ -24,7 +24,7 @@ class AnswerViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny, ]
 
     def random_string():
-        return str(random.randint(10, 200))
+        return str(random.randint(100, 2000))
 
     @action(detail=True, methods=['post'])
     def rate_question(self, request,pk=None):
